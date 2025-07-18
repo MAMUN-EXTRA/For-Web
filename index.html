@@ -3,97 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Interest Calculator</title>
+    <title>Cosmic Interest Calculator</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="particles-container" id="particles-js"></div>
+    
     <div class="calculator-container">
+        <!-- Floating coins animation -->
+        <div class="floating-coins">
+            <div class="coin coin-1"><i class="fas fa-coins"></i></div>
+            <div class="coin coin-2"><i class="fas fa-coins"></i></div>
+            <div class="coin coin-3"><i class="fas fa-coins"></i></div>
+        </div>
+        
         <div class="calculator-header">
-            <h1 id="title">Daily Interest Calculator</h1>
-            <p id="subtitle">Calculate your daily compound interest earnings</p>
+            <div class="header-content">
+                <h1 id="title"><i class="fas fa-calculator"></i> Cosmic Interest</h1>
+                <p id="subtitle">Watch your money grow across the universe</p>
+            </div>
+            <div class="header-decoration">
+                <div class="pulsing-orb"></div>
+            </div>
         </div>
         
         <div class="calculator-body">
-            <div class="input-group">
-                <label id="principal-label">
-                    <i class="fas fa-money-bill-wave"></i> Principal Amount ($)
-                </label>
-                <input type="number" id="principal" placeholder="e.g. 1000" min="0" step="0.01">
-            </div>
-            
-            <div class="input-group">
-                <label id="rate-label">
-                    <i class="fas fa-percentage"></i> Annual Interest Rate (%)
-                </label>
-                <input type="number" id="rate" placeholder="e.g. 5" min="0" step="0.01">
-            </div>
-            
-            <div class="input-group">
-                <label id="time-label">
-                    <i class="far fa-calendar-alt"></i> Time Period (Days)
-                </label>
-                <input type="number" id="time" placeholder="e.g. 30" min="1" step="1">
-            </div>
-            
-            <div class="input-group">
-                <label id="compound-label">
-                    <i class="fas fa-calculator"></i> Compounding Frequency
-                </label>
-                <select id="compound">
-                    <option value="1">Daily</option>
-                    <option value="7">Weekly</option>
-                    <option value="14">Bi-weekly</option>
-                    <option value="30">Monthly</option>
-                </select>
-            </div>
-            
-            <button class="btn" id="calculate-btn">
-                <i class="fas fa-calculator"></i> Calculate
-            </button>
-            
-            <div class="results" id="results">
-                <h3 id="results-title">Results</h3>
-                <div class="result-item">
-                    <span class="result-label" id="principal-result-label">
-                        <i class="fas fa-money-bill-wave"></i> Principal Amount:
-                    </span>
-                    <span class="result-value" id="principal-result">$0.00</span>
+            <div class="input-section">
+                <div class="input-group">
+                    <label id="principal-label">
+                        <i class="fas fa-money-bill-wave"></i> Principal Amount
+                    </label>
+                    <div class="input-with-symbol">
+                        <span class="currency-symbol">$</span>
+                        <input type="number" id="principal" placeholder="1000" min="0" step="0.01">
+                    </div>
+                    <div class="input-underline"></div>
                 </div>
-                <div class="result-item">
-                    <span class="result-label" id="interest-label">
-                        <i class="fas fa-coins"></i> Interest Earned:
-                    </span>
-                    <span class="result-value" id="interest">$0.00</span>
+                
+                <div class="input-group">
+                    <label id="rate-label">
+                        <i class="fas fa-chart-line"></i> Annual Rate
+                    </label>
+                    <div class="input-with-symbol">
+                        <input type="number" id="rate" placeholder="5.0" min="0" step="0.01">
+                        <span class="percent-symbol">%</span>
+                    </div>
+                    <div class="input-underline"></div>
                 </div>
-                <div class="result-item">
-                    <span class="result-label" id="total-label">
-                        <i class="fas fa-piggy-bank"></i> Total Amount:
-                    </span>
-                    <span class="result-value total-amount" id="total">$0.00</span>
+                
+                <div class="input-group">
+                    <label id="time-label">
+                        <i class="far fa-calendar-alt"></i> Time Period
+                    </label>
+                    <div class="input-with-suffix">
+                        <input type="number" id="time" placeholder="30" min="1" step="1">
+                        <span class="suffix-text">days</span>
+                    </div>
+                    <div class="input-underline"></div>
                 </div>
+                
+                <div class="input-group">
+                    <label id="compound-label">
+                        <i class="fas fa-retweet"></i> Compounding
+                    </label>
+                    <select id="compound">
+                        <option value="1">Daily</option>
+                        <option value="7">Weekly</option>
+                        <option value="30">Monthly</option>
+                    </select>
+                    <div class="select-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                
+                <button class="calculate-btn" id="calculate-btn">
+                    <span class="btn-text">Calculate Growth</span>
+                    <span class="btn-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="btn-particles"></span>
+                </button>
             </div>
             
-            <div class="language-selector">
-                <button class="language-btn active" data-lang="en">
-                    <i class="fas fa-language"></i> English
-                </button>
-                <button class="language-btn" data-lang="es">
-                    <i class="fas fa-language"></i> Español
-                </button>
-                <button class="language-btn" data-lang="fr">
-                    <i class="fas fa-language"></i> Français
-                </button>
-                <button class="language-btn" data-lang="de">
-                    <i class="fas fa-language"></i> Deutsch
-                </button>
-                <button class="language-btn" data-lang="ja">
-                    <i class="fas fa-language"></i> 日本語
-                </button>
+            <div class="results-section" id="results">
+                <div class="results-header">
+                    <h3><i class="fas fa-chart-pie"></i> Projection Results</h3>
+                    <div class="results-decoration">
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                    </div>
+                </div>
+                
+                <div class="result-cards">
+                    <div class="result-card principal-card">
+                        <div class="card-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-label">Initial Investment</span>
+                            <span class="card-value" id="principal-result">$0.00</span>
+                        </div>
+                        <div class="card-wave"></div>
+                    </div>
+                    
+                    <div class="result-card interest-card">
+                        <div class="card-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-label">Interest Earned</span>
+                            <span class="card-value" id="interest">$0.00</span>
+                        </div>
+                        <div class="card-wave"></div>
+                    </div>
+                    
+                    <div class="result-card total-card">
+                        <div class="card-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-label">Total Value</span>
+                            <span class="card-value" id="total">$0.00</span>
+                        </div>
+                        <div class="card-wave"></div>
+                    </div>
+                </div>
+                
+                <div class="growth-animation">
+                    <div class="plant-growth">
+                        <div class="pot"></div>
+                        <div class="stem"></div>
+                        <div class="leaves">
+                            <div class="leaf leaf-1"></div>
+                            <div class="leaf leaf-2"></div>
+                            <div class="leaf leaf-3"></div>
+                        </div>
+                        <div class="dollar-fruit">$</div>
+                    </div>
+                    <div class="growth-track">
+                        <div class="growth-progress" id="growth-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="calculator-footer">
+            <div class="theme-toggle">
+                <i class="fas fa-moon"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fas fa-sun"></i>
+            </div>
+            <div class="footer-decoration">
+                <div class="orbiting-dot dot-1"></div>
+                <div class="orbiting-dot dot-2"></div>
             </div>
         </div>
     </div>
 
+    <!-- Confetti container -->
+    <div id="confetti-container"></div>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/script.js"></script>
 </body>
-</html>
+    </html>
